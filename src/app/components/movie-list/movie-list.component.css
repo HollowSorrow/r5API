@@ -1,0 +1,16 @@
+.list h2 { margin: 0 0 1rem; }
+.grid { list-style: none; margin: 0; padding: 0; display: grid; gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.card { position: relative; width: 100%; padding: 0; border: 2px solid transparent;
+  border-radius: 10px; background: #1b1f2a; color: #fff; cursor: pointer; overflow: hidden;
+  text-align: left; transition: transform .15s, border-color .15s; }
+.card:hover { transform: translateY(-3px); }
+.card.selected { border-color: #f5c518; }
+.card img { display: block; width: 100%; aspect-ratio: 2 / 3; object-fit: cover; background: #2a2f3d; }
+.rank { position: absolute; top: 6px; left: 6px; background: #f5c518; color: #111;
+  font-weight: 700; font-size: .75rem; padding: 2px 6px; border-radius: 4px; }
+.info { display: block; padding: .5rem; }
+.title { display: block; font-size: .85rem; line-height: 1.2; }
+.meta { font-size: .75rem; color: #b8bdca; }
+.state { color: #b8bdca; }
+.error { color: #ff7b7b; }

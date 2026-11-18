@@ -1,0 +1,33 @@
+<section class="list">
+  <h2>Mejor valoradas</h2>
+
+  @if (loading()) {
+    <p class="state" role="status">Cargando películas…</p>
+  } @else if (error()) {
+    <p class="state error" role="alert">{{ error() }}</p>
+  } @else {
+    <ul class="grid">
+      @for (movie of movies(); track movie.id; let i = $index) {
+        <li>
+          <button
+            type="button"
+            class="card"
+            [class.selected]="movie.id === selectedId()"
+            (click)="select(movie)"
+          >
+            <span class="rank">#{{ i + 1 }}</span>
+            <img [src]="poster(movie)" [alt]="'Póster de ' + movie.title" loading="lazy" />
+            <span class="info">
+              <strong class="title">{{ movie.title }}</strong>
+              <span class="meta">
+                {{ movie.release_date | date: 'yyyy' }} · ★ {{ movie.vote_average | number: '1.1-1' }}
+              </span>
+            </span>
+          </button>
+        </li>
+      } @empty {
+        <li class="state">No hay películas disponibles.</li>
+      }
+    </ul>
+  }
+</section>

@@ -1,0 +1,42 @@
+@if (movieId() === null) {
+  <aside class="detail empty">
+    <p>Selecciona una película de la lista para ver su detalle.</p>
+  </aside>
+} @else if (loading()) {
+  <aside class="detail"><p role="status">Cargando detalle…</p></aside>
+} @else if (error()) {
+  <aside class="detail"><p class="error" role="alert">{{ error() }}</p></aside>
+} @else if (movie(); as m) {
+  <aside class="detail">
+    <button type="button" class="close" (click)="closed.emit()" aria-label="Cerrar detalle">✕</button>
+    <img [src]="poster()" [alt]="'Póster de ' + m.title" />
+    <h2>{{ m.title }}</h2>
+    @if (m.tagline) {
+      <p class="tagline">“{{ m.tagline }}”</p>
+    }
+    <p class="chips">
+      <span>★ {{ m.vote_average | number: '1.1-1' }} ({{ m.vote_count | number }} votos)</span>
+      @if (m.runtime) {
+        <span>{{ m.runtime }} min</span>
+      }
+      <span>{{ m.release_date | date: 'longDate' }}</span>
+    </p>
+    <p class="genres">
+      @for (g of m.genres; track g.id) {
+        <span class="genre">{{ g.name }}</span>
+      }
+    </p>
+    <h3>Sinopsis</h3>
+    <p>{{ m.overview || 'Sin sinopsis disponible.' }}</p>
+    <dl>
+      <dt>Título original</dt><dd>{{ m.original_title }}</dd>
+      <dt>Estado</dt><dd>{{ m.status }}</dd>
+      @if (m.budget > 0) {
+        <dt>Presupuesto</dt><dd>{{ m.budget | currency: 'USD' : 'symbol' : '1.0-0' }}</dd>
+      }
+      @if (m.revenue > 0) {
+        <dt>Recaudación</dt><dd>{{ m.revenue | currency: 'USD' : 'symbol' : '1.0-0' }}</dd>
+      }
+    </dl>
+  </aside>
+}

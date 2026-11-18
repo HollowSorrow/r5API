@@ -1,0 +1,9 @@
+<header class="top">
+  <h1>🎬 {{ title }}</h1>
+  <p>Las películas mejor valoradas según TMDB</p>
+</header>
+
+<main class="layout">
+  <app-movie-list [selectedId]="selectedMovieId()" (movieSelected)="onMovieSelected($event)" />
+  <app-movie-detail [movieId]="selectedMovieId()" (closed)="onDetailClosed()" />
+</main>

@@ -1,0 +1,7 @@
+.top { text-align: center; padding: 1.5rem 1rem 0; }
+.top h1 { margin: 0; }
+.top p { color: #b8bdca; margin: .25rem 0 0; }
+.layout { display: grid; grid-template-columns: 1fr 360px; gap: 1.5rem; padding: 1.5rem;
+  max-width: 1300px; margin: 0 auto; align-items: start; }
+app-movie-detail { position: sticky; top: 1rem; }
+@media (max-width: 900px) { .layout { grid-template-columns: 1fr; } app-movie-detail { position: static; } }
